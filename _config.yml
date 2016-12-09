@@ -6,9 +6,9 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Name of your site (displayed in the header)
-title: Minium development team blog
+title: Minium Team
 name: Minium team
-description: Minium team
+description: Minium development team blog
 teaser: /assets/images/minium_logo.png
 
 # SEO Related

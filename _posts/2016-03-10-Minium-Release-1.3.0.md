@@ -6,7 +6,7 @@ categories:
 author: raphaelrodrigues
 ---
 
-Hi all,
+Minium Developer 1.3.0 is out!
 
 [Minium 1.3.0](https://github.com/viltgroup/minium-tools/releases/) has just been released.
 

@@ -121,7 +121,7 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: http://minium.vilt.io/
+url: https://mariolameiras.github.io/
 
 # Conversion
 markdown: kramdown

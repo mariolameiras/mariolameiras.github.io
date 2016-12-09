@@ -1,8 +1,10 @@
 ---
-layout: post
 title: Minium blog is up and running!
-categories: [Minium,release]
-author_github: mariolameiras
+#layout: post
+categories:
+  - Minium
+  - release
+author: mariolameiras
 ---
 
 Hi all,

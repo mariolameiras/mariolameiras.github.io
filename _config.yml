@@ -9,9 +9,7 @@
 title: Minium Team
 name: Minium team
 description: Minium development team blog
-page:
-  header:
-    teaser: /assets/images/minium_logo.png
+teaser: /assets/images/code.png
 
 # SEO Related
 google_site_verification :
@@ -59,8 +57,8 @@ footer-links:
 # Site Author
 author:
   name             : "Minium"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  #bio              : "I am an amazing person."
+  avatar           : "/assets/images/minium_logo.png"
+  bio              : "Minium development team blog."
   #location         : "Portugal"
   email            : "minium@vilt-group.com"
   uri              : "http://minium.vilt.io/"

@@ -1,8 +1,8 @@
 ---
 title: Minium Release 1.4.1
 header:
-  image: /assets/images/code.jpg
-  spoiler: /assets/images/code.jpg
+#  image: /assets/images/code.jpg
+  teaser: /assets/images/code.jpg
 categories:
   - Minium
   - release

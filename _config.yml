@@ -9,7 +9,9 @@
 title: Minium Team
 name: Minium team
 description: Minium development team blog
-teaser: /assets/images/minium_logo.png
+page:
+  header:
+    teaser: /assets/images/minium_logo.png
 
 # SEO Related
 google_site_verification :

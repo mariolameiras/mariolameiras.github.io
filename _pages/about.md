@@ -1,7 +1,7 @@
 ---
-layout: page
-title: About
 permalink: /about/
+title: "About"
+excerpt: "About Minium Team"
 ---
 
 [Minium](http://minium.vilt.io/) is a framework developed at VILT that helps you test your web application the same way a human would.

@@ -1,5 +1,7 @@
 # main links
 main:
+  - title: "Blog"
+    url: "https://mariolameiras.github.io/"
   - title: "Minium Website"
     url: http://minium.vilt.io/
   - title: "About"

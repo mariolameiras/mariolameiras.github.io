@@ -2,32 +2,49 @@
 
 <html>
     <head>
-<script src="http://widget.windguru.cz/js/wg_widget.php" type="text/javascript"></script>
-<script language="JavaScript" type="text/javascript">
-//<![CDATA[
-WgWidget({
-s: 48939, odh:6, doh:21, wj:'kmh', tj:'c', waj:'m', fhours:72, lng:'en',
-params: ['WINDSPD','GUST','SMER','HTSGW','WAVESMER','PERPW'],
-first_row:true,
-spotname:true,
-first_row_minfo:true,
-last_row:true,
-lat_lon:false,
-tz:false,
-sun:true,
-link_archive:false,
-link_new_window:true
-},
-'wg_target_div_48939_70909821'
-);
-//]]>
-</script>
 
-<script id="wg_fwdg_48939_43_1568062977137">
+
+
+
+
+</head>    
+<body>
+
+<h1>Wind</h1>
+<div id=icon7></div>
+<div id=wrf9></div>
+<div id=hirlam75></div>
+<h1>Waves</h1>
+<div id=ewam5></div>
+<div id=gwam27></div>
+
+
+<!--
+WVHGT,WVPER,WVDIR
+-->
+<script>
+var esposende="48939"
+var spot="s="+esposende
+</script>
+<script id="ewam5">
+        (function (window, document) {
+          var loader = function () {
+            var arg = [spot,"m=46","uid=ewam5","waj=m","odh=7","doh=21","fhours=240","vt=forecasts","lng=en",
+           "p=HTSGW,SWELL1,SWPER1,PERPW,DIRPW,SWDIR1"];
+            var script = document.createElement("script");  
+            var tag = document.getElementsByTagName("script")[0];
+            script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+            tag.parentNode.insertBefore(script, tag);
+          };
+          window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+        })(window, document);
+        </script>
+
+<script id="icon7">
     (function (window, document) {
       var loader = function () {
-        var arg = ["s=48939","m=43","uid=wg_fwdg_48939_43_1568062977137","wj=kmh","tj=c","odh=6","doh=21","fhours=240","vt=forecasts","lng=en",
-       "p=WINDSPD,GUST,SMER,TMPE,FLHGT,CDC"];
+        var arg = [spot,"m=43","uid=icon7","wj=kmh","tj=c","odh=6","doh=21","fhours=240","vt=forecasts","lng=en",
+       "p=WINDSPD,GUST,SMER"];
         var script = document.createElement("script");
         var tag = document.getElementsByTagName("script")[0];
         script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
@@ -37,28 +54,47 @@ link_new_window:true
     })(window, document);
     </script>
 
-
-
-</head>    
-<body>
-
-        <div id="wg_target_div_48939_70909821"></div>
-        <div id="wg_fwdg_48939_43_1568062977137"></div>
-        <div id="wg_fwdg_48939_46_1568063185648"></div>
-
-        <script id="wg_fwdg_48939_46_1568063185648">
-                (function (window, document) {
-                  var loader = function () {
-                    var arg = ["s=48939","m=46","uid=wg_fwdg_48939_46_1568063185648","waj=m","odh=7","doh=21","fhours=240","vt=forecasts","lng=en",
-                   "p=HTSGW,PERPW,DIRPW,SWELL1,SWPER1,SWDIR1,WVHGT,WVPER,WVDIR"];
-                    var script = document.createElement("script");
-                    var tag = document.getElementsByTagName("script")[0];
-                    script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
-                    tag.parentNode.insertBefore(script, tag);
-                  };
-                  window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
-                })(window, document);
-                </script>
+<script id="gwam27">
+    (function (window, document) {
+      var loader = function () {
+        var arg = ["s=48939","m=47","uid=gwam27","waj=m","odh=0","doh=24","fhours=240","vt=forecasts","lng=en",
+       "p=HTSGW,SWELL1,PERPW,SWPER1,DIRPW,SWDIR1"];
+        var script = document.createElement("script");
+        var tag = document.getElementsByTagName("script")[0];
+        script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+        tag.parentNode.insertBefore(script, tag);
+      };
+      window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+    })(window, document);
+    </script>
+<script id="wrf9">
+    (function (window, document) {
+      var loader = function () {
+        var arg = ["s=48939","m=21","uid=wrf9","wj=knots","tj=c","odh=0","doh=24","fhours=240","vt=forecasts","lng=en",
+       "p=WINDSPD,GUST,MWINDSPD,SMER"];
+        var script = document.createElement("script");
+        var tag = document.getElementsByTagName("script")[0];
+        script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+        tag.parentNode.insertBefore(script, tag);
+      };
+      window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+    })(window, document);
+    </script>
+<script id="hirlam75">
+    (function (window, document) {
+      var loader = function () {
+        var arg = ["s=48939","m=51","uid=hirlam75","wj=knots","tj=c","odh=0","doh=24","fhours=240","vt=forecasts","lng=en",
+       "p=WINDSPD,GUST,MWINDSPD,SMER"];
+        var script = document.createElement("script");
+        var tag = document.getElementsByTagName("script")[0];
+        script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+        tag.parentNode.insertBefore(script, tag);
+      };
+      window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+    })(window, document);
+    </script>
+    
+    
     </body>
 </html>
     

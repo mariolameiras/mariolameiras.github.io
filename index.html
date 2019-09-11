@@ -1,100 +1,84 @@
-
-
 <html>
-    <head>
+
+<head>
 
 
 
 
 
-</head>    
+</head>
+
 <body>
+  <select id="hourSelect">
+    <option value="12">12h</option>
+    <option value="42">42h</option>
+    <option value="72">72h</option>
+    <option value="240">240h</option>
+  </select>
+  <select id="spot">
+    <option value="Esposende">Esposende</option>
+  </select>
 
-<h1>Wind</h1>
-<div id=icon7></div>
-<div id=wrf9></div>
-<div id=hirlam75></div>
-<h1>Waves</h1>
-<div id=ewam5></div>
-<div id=gwam27></div>
+  <h1>Wind</h1>
+  <div id="icon7"></div>
+  <div id="wrf9"></div>
+  <div id="hirlam75"></div>
+  <h1>Waves</h1>
+  <div id="ewam5"></div>
+  <div id="gwam27"></div>
 
 
-<!--
+  <!--
 WVHGT,WVPER,WVDIR
 -->
-<script>
-var esposende="48939"
-var spot="s="+esposende
-</script>
-<script id="ewam5">
-        (function (window, document) {
-          var loader = function () {
-            var arg = [spot,"m=46","uid=ewam5","waj=m","odh=7","doh=21","fhours=240","vt=forecasts","lng=en",
-           "p=HTSGW,SWELL1,SWPER1,PERPW,DIRPW,SWDIR1"];
-            var script = document.createElement("script");  
-            var tag = document.getElementsByTagName("script")[0];
-            script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
-            tag.parentNode.insertBefore(script, tag);
-          };
-          window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
-        })(window, document);
-        </script>
+  <script>
+    var esposende = "48939"
+    var spot = "s=" + esposende
 
-<script id="icon7">
-    (function (window, document) {
-      var loader = function () {
-        var arg = [spot,"m=43","uid=icon7","wj=kmh","tj=c","odh=6","doh=21","fhours=240","vt=forecasts","lng=en",
-       "p=WINDSPD,GUST,SMER"];
-        var script = document.createElement("script");
-        var tag = document.getElementsByTagName("script")[0];
-        script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
-        tag.parentNode.insertBefore(script, tag);
-      };
-      window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
-    })(window, document);
-    </script>
 
-<script id="gwam27">
-    (function (window, document) {
+    var m_ewam5 = [spot, "m=46", "uid=ewam5", "waj=m", "odh=7", "doh=21", "vt=forecasts", "lng=en",
+      "p=HTSGW,SWELL1,SWPER1,PERPW,DIRPW,SWDIR1"];
+    var m_hirlam75 = ["s=48939", "m=51", "uid=hirlam75", "wj=knots", "tj=c", "odh=0", "doh=24", "vt=forecasts",
+      "lng=en","p=WINDSPD,GUST,MWINDSPD,SMER"];
+    var m_icon7 = [spot, "m=43", "uid=icon7", "wj=kmh", "tj=c", "odh=6", "doh=21", "vt=forecasts", "lng=en",
+      "p=WINDSPD,GUST,SMER"];
+    var m_gwam27 = ["s=48939", "m=47", "uid=gwam27", "waj=m", "odh=0", "doh=24", "vt=forecasts", "lng=en",
+      "p=HTSGW,SWELL1,PERPW,SWPER1,DIRPW,SWDIR1"];
+    var m_wrf9 = ["s=48939", "m=21", "uid=wrf9", "wj=knots", "tj=c", "odh=0", "doh=24", "vt=forecasts",
+      "lng=en","p=WINDSPD,GUST,MWINDSPD,SMER"];
+
+    function loadWindGuru(window, document, model, modelName) {
       var loader = function () {
-        var arg = ["s=48939","m=47","uid=gwam27","waj=m","odh=0","doh=24","fhours=240","vt=forecasts","lng=en",
-       "p=HTSGW,SWELL1,PERPW,SWPER1,DIRPW,SWDIR1"];
+
+        model.push("fhours=" + document.getElementById("hourSelect").value)
+        var oldScript = document.getElementById("script-"+modelName);
+        var el = document.getElementById(modelName);
+        el.parentNode.removeChild(el.nextSibling)
+
         var script = document.createElement("script");
+        script.src = "https://www.windguru.cz/js/widget.php?" + (model.join("&"));
+        script.id = "script-"+modelName
+
         var tag = document.getElementsByTagName("script")[0];
-        script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
-        tag.parentNode.insertBefore(script, tag);
+        oldScript == null ? tag.parentNode.insertBefore(script, tag) : oldScript.parentNode.replaceChild(script,
+          oldScript);
       };
+      document.getElementById("hourSelect").addEventListener("change", loader, false);
       window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
-    })(window, document);
-    </script>
-<script id="wrf9">
-    (function (window, document) {
-      var loader = function () {
-        var arg = ["s=48939","m=21","uid=wrf9","wj=knots","tj=c","odh=0","doh=24","fhours=240","vt=forecasts","lng=en",
-       "p=WINDSPD,GUST,MWINDSPD,SMER"];
-        var script = document.createElement("script");
-        var tag = document.getElementsByTagName("script")[0];
-        script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
-        tag.parentNode.insertBefore(script, tag);
-      };
-      window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
-    })(window, document);
-    </script>
-<script id="hirlam75">
-    (function (window, document) {
-      var loader = function () {
-        var arg = ["s=48939","m=51","uid=hirlam75","wj=knots","tj=c","odh=0","doh=24","fhours=240","vt=forecasts","lng=en",
-       "p=WINDSPD,GUST,MWINDSPD,SMER"];
-        var script = document.createElement("script");
-        var tag = document.getElementsByTagName("script")[0];
-        script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
-        tag.parentNode.insertBefore(script, tag);
-      };
-      window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
-    })(window, document);
-    </script>
-    
-    
-    </body>
+    }
+
+
+    function loadModels() {
+      loadWindGuru(window, document, m_wrf9, 'wrf9');
+      loadWindGuru(window, document, m_hirlam75, 'hirlam75');
+      loadWindGuru(window, document, m_icon7, 'icon7');
+      loadWindGuru(window, document, m_ewam5, 'ewam5');
+      loadWindGuru(window, document, m_gwam27, 'gwam27');
+    }
+    loadModels( );
+  </script>
+
+
+</body>
+
 </html>
-    

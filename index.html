@@ -1,12 +1,34 @@
+<!DOCTYPE html>
 <html>
 
 <head>
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
 
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Date', 'Tide'],
+        ['2004',  1000],
+        ['2005',  1170],
+        ['2006',  660],
+        ['2007',  1030]
+      ]);
 
+      var options = {
+        curveType: 'function',
+        legend: 'none',
+        vAxis: {gridlines: {count: 0}}
+      };
 
+      var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-
+      chart.draw(data, options);
+    }
+  </script>
 </head>
+<title>O Oraculo do Diogo</title>
 
 <body>
   <select id="hourSelect">
@@ -19,6 +41,9 @@
     <option value="Esposende">Esposende</option>
   </select>
 
+  <div id=tides>
+      <div id="curve_chart" style="width: 500px; height: 100px"></div>
+  </div>
   <h1>Wind</h1>
   <div id="icon7"></div>
   <div id="wrf9"></div>
@@ -34,30 +59,37 @@ WVHGT,WVPER,WVDIR
   <script>
     var esposende = "48939"
     var spot = "s=" + esposende
+    const lat = 41.5;
+    const lng = -8.79;
 
 
     var m_ewam5 = [spot, "m=46", "uid=ewam5", "waj=m", "odh=7", "doh=21", "vt=forecasts", "lng=en",
-      "p=HTSGW,SWELL1,SWPER1,PERPW,DIRPW,SWDIR1"];
+      "p=HTSGW,SWELL1,SWPER1,PERPW,DIRPW,SWDIR1"
+    ];
     var m_hirlam75 = ["s=48939", "m=51", "uid=hirlam75", "wj=knots", "tj=c", "odh=0", "doh=24", "vt=forecasts",
-      "lng=en","p=WINDSPD,GUST,MWINDSPD,SMER"];
+      "lng=en", "p=WINDSPD,GUST,MWINDSPD,SMER"
+    ];
     var m_icon7 = [spot, "m=43", "uid=icon7", "wj=kmh", "tj=c", "odh=6", "doh=21", "vt=forecasts", "lng=en",
-      "p=WINDSPD,GUST,SMER"];
+      "p=WINDSPD,GUST,SMER"
+    ];
     var m_gwam27 = ["s=48939", "m=47", "uid=gwam27", "waj=m", "odh=0", "doh=24", "vt=forecasts", "lng=en",
-      "p=HTSGW,SWELL1,PERPW,SWPER1,DIRPW,SWDIR1"];
+      "p=HTSGW,SWELL1,PERPW,SWPER1,DIRPW,SWDIR1"
+    ];
     var m_wrf9 = ["s=48939", "m=21", "uid=wrf9", "wj=knots", "tj=c", "odh=0", "doh=24", "vt=forecasts",
-      "lng=en","p=WINDSPD,GUST,MWINDSPD,SMER"];
+      "lng=en", "p=WINDSPD,GUST,MWINDSPD,SMER"
+    ];
 
     function loadWindGuru(window, document, model, modelName) {
       var loader = function () {
 
         model.push("fhours=" + document.getElementById("hourSelect").value)
-        var oldScript = document.getElementById("script-"+modelName);
+        var oldScript = document.getElementById("script-" + modelName);
         var el = document.getElementById(modelName);
         el.parentNode.removeChild(el.nextSibling)
 
         var script = document.createElement("script");
         script.src = "https://www.windguru.cz/js/widget.php?" + (model.join("&"));
-        script.id = "script-"+modelName
+        script.id = "script-" + modelName
 
         var tag = document.getElementsByTagName("script")[0];
         oldScript == null ? tag.parentNode.insertBefore(script, tag) : oldScript.parentNode.replaceChild(script,
@@ -67,6 +99,24 @@ WVHGT,WVPER,WVDIR
       window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
     }
 
+    (function loadTide() {
+      fetch(`https://api.stormglass.io/v1/tide/extremes/point?lat=${lat}&lng=${lng}`, {
+        headers: {
+          'Authorization': '846e41d6-d412-11e9-a64e-0242ac130004-846e42ee-d412-11e9-a64e-0242ac130004'
+        }
+      }).then((response) => response.json()).then((jsonData) => {
+        console.log(jsonData)
+        var tides = jsonData.extremes
+        var span = document.createElement("span");
+        var content = document.getElementById("tides");
+        content.appendChild(span)
+        google.charts.setOnLoadCallback(drawChart);
+
+
+
+      });
+    })()
+
 
     function loadModels() {
       loadWindGuru(window, document, m_wrf9, 'wrf9');
@@ -75,7 +125,18 @@ WVHGT,WVPER,WVDIR
       loadWindGuru(window, document, m_ewam5, 'ewam5');
       loadWindGuru(window, document, m_gwam27, 'gwam27');
     }
-    loadModels( );
+    loadModels();
+
+
+
+
+    fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}`, {
+      headers: {
+        'Authorization': '846e41d6-d412-11e9-a64e-0242ac130004-846e42ee-d412-11e9-a64e-0242ac130004'
+      }
+    }).then((response) => response.json()).then((jsonData) => {
+      console.log(jsonData.hours)
+    });
   </script>
 
 
